@@ -3,3 +3,6 @@
 # https://dvc.org/doc/user-guide/dvcignore
 
 /config/.env
+.vscode/
+__pycache__/
+*.ipynb_checkpoints
