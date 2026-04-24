@@ -9,3 +9,5 @@
 /data/processed
 /winner_models
 /models
+/src/architectures/__pycache__
+/src/__pycache__
