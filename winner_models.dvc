@@ -1,0 +1,6 @@
+outs:
+- md5: 9a3b5ce936bb05ba7acd4962a8935364.dir
+  size: 95853
+  nfiles: 1
+  hash: md5
+  path: winner_models
