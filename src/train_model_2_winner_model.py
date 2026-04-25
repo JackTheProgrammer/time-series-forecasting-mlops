@@ -10,8 +10,7 @@ import numpy as np
 from datetime import datetime
 from pathlib import Path
 from typing import Any
-import copy
-import sys
+import shutil, copy, sys
 
 sys.path.append('.')  # Add the parent directory to the system path
 sys.path.append('./') # Add the current directory to the system path 
@@ -253,7 +252,6 @@ best_model_checkpoint_path.rename(destination_path)
 print(f"Best model checkpoint moved to: {destination_path}")
 
 # truncating the entire `WORK_DIR`
-import shutil
 
 for item in WORK_DIR.iterdir():
     if item.is_file():
