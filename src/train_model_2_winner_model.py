@@ -68,6 +68,7 @@ def validate_model(model: nn.Module, val_loader: DataLoader) -> float | Any:
     return avg_val_loss
 
 WORK_DIR = Path("model")
+WORK_DIR.mkdir(parents=True, exist_ok=True)
 EPOCHS = 400
 
 class EarlyStopper:
