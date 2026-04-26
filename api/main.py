@@ -5,6 +5,8 @@
 
 from fastapi.applications import FastAPI
 from sys import path
+from torch import tensor
+import torch
 from uvicorn import run
 
 # to ensure we can import from the src directory
@@ -17,10 +19,12 @@ from api.schemas import ForecastRequest, ForecastResponse
 
 app = FastAPI()
 
-@app.post('/forecast', response_model=ForecastResponse)
-def forecast(request:ForecastRequest):
-    forecasted_price = forecast_next_price(request.series_frame)
-    return ForecastResponse(forecasted_price=forecasted_price)
+@app.post('/forecast', response_model=ForecastResponse, summary="Get the forecasted stock price for the next time step")
+def forecast(request: ForecastRequest):
+    series_tensor = tensor(request.series_frame, device=torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'))  # Convert the list to a PyTorch tensor
+    print(f"Received series frame for forecasting: {series_tensor} with shape {series_tensor.shape}")
+    forecasted_price = forecast_next_price(series_tensor)
+    return {"forecasted_price": forecasted_price}
 
 @app.get('/')
 def root():

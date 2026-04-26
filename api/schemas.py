@@ -1,11 +1,36 @@
-from pydantic import BaseModel, ConfigDict
-from pandas import DataFrame
+# from typing import TypedDict
 from torch import Tensor
+from pydantic import BaseModel, ConfigDict #, PlainSerializer
+# from typing import Annotated
+from pydantic_core import core_schema
+
+class TorchTensorType:
+    @classmethod
+    def __get_pydantic_core_schema__(cls, _source_type, _handler):
+        return core_schema.json_or_python_schema(
+            json_schema=core_schema.list_schema(),
+            python_schema=core_schema.is_instance_schema(Tensor),
+            serialization=core_schema.plain_serializer_function_ser_schema(
+                lambda t: t.tolist()
+            ),
+        )
+
+# SerializableTensor = Annotated(
+#     Tensor,
+#     PlainSerializer(
+#         lambda tensor: tensor.tolist(),  # Convert Tensor to list for serialization
+#         # lambda data: Tensor(data),  # Convert list back to Tensor for deserialization
+#         return_type=list
+#     )
+# )
 
 class ForecastRequest(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-    series_frame: DataFrame
+    model_config = ConfigDict(arbitrary_types_allowed=True, from_attributes=True)
+    series_frame: list
     
 class ForecastResponse(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    forecasted_price: Tensor
+    forecasted_price: TorchTensorType
+    
+# forecast_res = ForecastResponse(forecasted_price=Tensor([1.0, 2.0, 3.0]))
+# print(forecast_res.model_dump_json())

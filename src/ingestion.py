@@ -44,19 +44,20 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 loaded_model.to(device)
 loaded_model.load_state_dict(torch.load(latest_model_path, map_location=device))
 
-def forecast_next_price(model: nn.Module, input_sequence: torch.Tensor):
-    model.eval()  # Set the model to evaluation mode
+def forecast_next_price(input_sequence: torch.Tensor):
+    loaded_model.eval()  # Set the model to evaluation mode
     with torch.no_grad():  # Disable gradient calculation
-        predicted_price = model(input_sequence)  # Get the predicted price
+        predicted_price = loaded_model(input_sequence)  # Get the predicted price
     return predicted_price  # Return the predicted price as a scalar
 
 # dummy stock data for testing
 dummy_data = torch.rand(32, 30, 1)  # Shape: (batch_size, sequence_length, num_features)
 dummy_data = dummy_data.to(device)
 print("Dummy data shape: ", dummy_data.shape)
+print("Original dummy data: ", dummy_data)
 print("Dummy data as flattened: ", dummy_data.flatten())
 
-forecasted_price = forecast_next_price(loaded_model, dummy_data)
+forecasted_price = forecast_next_price(dummy_data)
 print("Forecasted price shape: ", forecasted_price.shape if isinstance(forecasted_price, torch.Tensor) else "Not a tensor")
 print("Forecasted price: ", forecasted_price)
 print("Forecasted next price flattened: ", forecasted_price.flatten())
