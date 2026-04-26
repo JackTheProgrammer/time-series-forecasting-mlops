@@ -15,7 +15,7 @@ path.append('.')
 path.append('./')
 
 from src.ingestion import forecast_next_price
-from api.schemas import ForecastRequest, ForecastResponse
+from src.api.schemas import ForecastRequest, ForecastResponse
 
 app = FastAPI()
 
