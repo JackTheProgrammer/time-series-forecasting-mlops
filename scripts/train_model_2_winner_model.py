@@ -243,7 +243,7 @@ for model_name, (model_instance, saved_wts_path) in trained_models.items():
 
 print(f"\nWinner Model: {best_model_details[0]} with Test Loss: {best_test_loss:.4f} at the path: {best_model_details[1]}")
 
-WINNER_DIR = Path(f"../winner_models/{datetime.today().year}")
+WINNER_DIR = Path(f"winner_models/{datetime.today().year}")
 WINNER_DIR.mkdir(parents=True, exist_ok=True)
 
 # Copy the best model's checkpoint to the winner directory
