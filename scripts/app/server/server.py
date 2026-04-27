@@ -32,7 +32,7 @@ def make_forecast_request(data):
         log(msg = f'ERROR: {str(e)}', level=40)
     return None
 torch.manual_seed(42)  # For reproducibility
-# shape is such that 4 is the batch size, 30 is the sequence length 
+# shape is such that 32 is the batch size, 30 is the sequence length 
 # and 1 is the number of features (e.g., stock price)
 forecast_series = torch.rand((32, 30, 1)).tolist()  # Example input data
 
