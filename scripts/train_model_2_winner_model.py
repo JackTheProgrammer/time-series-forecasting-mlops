@@ -15,10 +15,10 @@ import shutil, copy, sys
 sys.path.append('.')  # Add the parent directory to the system path
 sys.path.append('./') # Add the current directory to the system path 
 
-from src.evaluate import mse_loss
-from src.architectures.lstm import GoldStockPriceLSTM
-from src.architectures.gru import GoldStockPriceGRU
-from src.architectures.conv1d import GoldStockPriceConv1D
+from scripts.evaluate import mse_loss
+from scripts.architectures.lstm import GoldStockPriceLSTM
+from scripts.architectures.gru import GoldStockPriceGRU
+from scripts.architectures.conv1d import GoldStockPriceConv1D
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

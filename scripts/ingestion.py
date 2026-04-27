@@ -31,13 +31,13 @@ print("Architecture name: ", architecture_name)
 
 loaded_model = None
 if architecture_name == 'LSTM':
-    from src.architectures.lstm import GoldStockPriceLSTM
+    from scripts.architectures.lstm import GoldStockPriceLSTM
     loaded_model = GoldStockPriceLSTM()
 if architecture_name == 'GRU':
-    from src.architectures.gru import GoldStockPriceGRU
+    from scripts.architectures.gru import GoldStockPriceGRU
     loaded_model = GoldStockPriceGRU()
 if architecture_name == 'Conv1D':
-    from src.architectures.conv1d import GoldStockPriceConv1D
+    from scripts.architectures.conv1d import GoldStockPriceConv1D
     loaded_model = GoldStockPriceConv1D()
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

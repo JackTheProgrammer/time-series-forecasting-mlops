@@ -14,8 +14,8 @@ from uvicorn import run
 path.append('.')
 path.append('./')
 
-from src.ingestion import forecast_next_price
-from src.api.schemas import ForecastRequest, ForecastResponse
+from scripts.ingestion import forecast_next_price
+from scripts.api.schemas import ForecastRequest, ForecastResponse
 
 app = FastAPI()
 
