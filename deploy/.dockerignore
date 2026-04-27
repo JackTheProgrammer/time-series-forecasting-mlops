@@ -1,0 +1,14 @@
+.vscode
+/config/.env
+/data
+/model
+/__pycache__
+*.ipynb_checkpoints
+/data/raw
+/data/processed
+/winner_models
+/models
+/scripts/__pycache__
+/scripts/api/__pycache__
+/scripts/app/__pycache__
+/scripts/architectures/__pycache__
