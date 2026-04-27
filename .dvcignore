@@ -17,3 +17,4 @@ __pycache__/
 /scripts/api/__pycache__
 /requirements.txt
 /requirements-dev.txt
+/notebooks

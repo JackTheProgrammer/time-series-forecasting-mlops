@@ -31,7 +31,6 @@ def make_forecast_request(data):
     except requests.exceptions.RequestException as e:
         log(msg = f'ERROR: {str(e)}', level=40)
     return None
-
 torch.manual_seed(42)  # For reproducibility
 # shape is such that 32 is the batch size, 30 is the sequence length 
 # and 1 is the number of features (e.g., stock price)

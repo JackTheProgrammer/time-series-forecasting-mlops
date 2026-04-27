@@ -2,7 +2,6 @@
 /config/.env
 /data
 /model
-/notebooks
 /__pycache__
 *.ipynb_checkpoints
 /data/raw
