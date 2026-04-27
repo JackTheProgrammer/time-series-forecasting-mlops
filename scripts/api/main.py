@@ -21,7 +21,7 @@ app = FastAPI()
 
 @app.post('/forecast', response_model=ForecastResponse, summary="Get the forecasted stock price for the next time step")
 def forecast(request: ForecastRequest):
-    series_tensor = tensor(request.series_frame, device=torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'))  # Convert the list to a PyTorch tensor
+    series_tensor = tensor(request.forecast_series, device=torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'))  # Convert the list to a PyTorch tensor
     print(f"Received series frame for forecasting: {series_tensor} with shape {series_tensor.shape}")
     forecasted_price = forecast_next_price(series_tensor)
     return {"forecasted_price": forecasted_price}

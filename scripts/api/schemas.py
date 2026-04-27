@@ -26,7 +26,7 @@ class TorchTensorType:
 
 class ForecastRequest(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True, from_attributes=True)
-    series_frame: list
+    forecast_series: list
     
 class ForecastResponse(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
