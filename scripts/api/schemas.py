@@ -1,6 +1,6 @@
 # from typing import TypedDict
 from torch import Tensor
-from pydantic import BaseModel, ConfigDict #, PlainSerializer
+from pydantic import BaseModel, ConfigDict
 # from typing import Annotated
 from pydantic_core import core_schema
 
@@ -14,15 +14,6 @@ class TorchTensorType:
                 lambda t: t.tolist()
             ),
         )
-
-# SerializableTensor = Annotated(
-#     Tensor,
-#     PlainSerializer(
-#         lambda tensor: tensor.tolist(),  # Convert Tensor to list for serialization
-#         # lambda data: Tensor(data),  # Convert list back to Tensor for deserialization
-#         return_type=list
-#     )
-# )
 
 class ForecastRequest(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True, from_attributes=True)
