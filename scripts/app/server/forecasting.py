@@ -22,3 +22,8 @@ todays_gold_stock_price = todays_gold_stock_price[["Close"]]
 
 gold_stock_dataset = GoldStockPriceDataset(todays_gold_stock_price, window_size=30)
 gold_stock_dataloader = DataLoader(gold_stock_dataset, batch_size=32, shuffle=True)
+
+# testing the dataloader
+# for batch in gold_stock_dataloader:
+#     print(batch.shape)  # Should print torch.Size([32, 30, 1])
+#     break
