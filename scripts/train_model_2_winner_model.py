@@ -253,7 +253,6 @@ shutil.move(best_model_checkpoint_path, destination_path)
 print(f"Best model checkpoint moved to: {destination_path}")
 
 # truncating the entire `WORK_DIR`
-
 for item in WORK_DIR.iterdir():
     if item.is_file():
         item.unlink()
