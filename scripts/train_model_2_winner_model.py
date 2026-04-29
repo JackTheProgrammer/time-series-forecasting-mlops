@@ -67,7 +67,7 @@ def validate_model(model: nn.Module, val_loader: DataLoader) -> float | Any:
     avg_val_loss = val_loss / len(val_loader.dataset)
     return avg_val_loss
 
-WORK_DIR = Path("model")
+WORK_DIR = Path("models")
 WORK_DIR.mkdir(parents=True, exist_ok=True)
 EPOCHS = 400
 
@@ -249,7 +249,7 @@ WINNER_DIR.mkdir(parents=True, exist_ok=True)
 # Copy the best model's checkpoint to the winner directory
 best_model_checkpoint_path = Path(best_model_details[1])
 destination_path = WINNER_DIR / best_model_checkpoint_path.name
-best_model_checkpoint_path.rename(destination_path)
+shutil.move(best_model_checkpoint_path, destination_path)
 print(f"Best model checkpoint moved to: {destination_path}")
 
 # truncating the entire `WORK_DIR`
