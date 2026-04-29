@@ -1,9 +1,8 @@
 from yfinance import download
 from datetime import datetime
-from torch import tensor, device, float32, cuda
+from torch import tensor, float32, cuda
 from torch.utils.data import Dataset, DataLoader
 
-device = device("cuda" if cuda.is_available() else "cpu")
 
 def preprocess_stock_price_data():
     todays_gold_stock_price = download("GC=F", start=datetime(2010, 1, 1), end=datetime.now())
@@ -26,7 +25,7 @@ class GoldStockPriceDataset(Dataset):
 
     def __getitem__(self, idx):
         stock_price_values = self.stock_prices['Close'].values
-        return tensor(stock_price_values[idx:idx + self.window_size], dtype=float32).to(device)
+        return tensor(stock_price_values[idx:idx + self.window_size], dtype=float32)
 
 todays_gold_stock_price = preprocess_stock_price_data()
 gold_stock_dataset = GoldStockPriceDataset(todays_gold_stock_price, window_size=30)
