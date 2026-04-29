@@ -16,7 +16,6 @@ print("Column renamed names:\n", goldstock_raw_data.columns)
 goldstock_raw_data.set_index('Date', inplace=True)
 print("Index is: ", goldstock_raw_data.index)
 
-# goldstock_raw_data.set_index('Date', inplace=True)
 goldstock_raw_data.index = to_datetime(goldstock_raw_data.index)
 
 type_mapping = {
