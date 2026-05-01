@@ -13,26 +13,15 @@ from scripts.app.server.forecasting import (
 )
 from scripts.app.server.server import make_forecast_request
 
-# python command to run the FastAPI server: `uvicorn scripts.api.main:app --reload`
-# os.system('python scripts/api/main.py')  # Start the FastAPI server in the background
-
-# if 'server_started' not in st.session_state:
-#     # We call uvicorn as a module (-m) to handle paths correctly
-#     st.session_state.server_started = subprocess.Popen(
-#         [executable, "-m", "uvicorn", "scripts.api.main:app", "--host", "127.0.0.1", "--port", "5050"],
-#         stdout=subprocess.PIPE,
-#         stderr=subprocess.PIPE
-#     )
-#     st.session_state.api_started = True
-#     st.info("Starting FastAPI server...")
-#     time.sleep(3)  # FastAPI/Uvicorn needs a few seconds to initialize
-#     st.success("API is running!")
+def inverse_min_max(scaled_val:np.ndarray, min_val=1500, max_val=5500):
+    """Manually reverses Min-Max scaling."""
+    return scaled_val * (max_val - min_val) + min_val
 
 # making charts of original + forecasted stock series
 # using data visualizations
 def plot_forecasted_series(forecasted_series):
     forecasted_numpy = np.array(forecasted_series)
-    forecasted_reshaped = forecasted_numpy.reshape(-1)
+    forecasted_reshaped = forecasted_numpy.flatten()
     
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.plot(forecasted_reshaped, label='Forecasted Stock Price', color='orange')
@@ -90,7 +79,8 @@ def home():
             # forecast_response['forecasted_price'] looks like [[val], [val], ...]
             # We flatten it to just [val, val, ...]
             vals = np.array(forecast_response['forecasted_price']).flatten().tolist()
-            forecasted_values.extend(vals)
+            actual_prices = [inverse_min_max(v) for v in vals]
+            forecasted_values.extend(actual_prices)
     
     if len(forecasted_values) > 0:
         # Pass the clean list of numbers to the plotting function
