@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 # import subprocess, time
 import numpy as np
 
-from sys import path, executable
+from sys import path
 path.append('.')
 path.append('./')
 
@@ -21,7 +21,7 @@ def inverse_min_max(scaled_val:np.ndarray, min_val=1500, max_val=5500):
 # using data visualizations
 def plot_forecasted_series(forecasted_series):
     forecasted_numpy = np.array(forecasted_series)
-    forecasted_reshaped = forecasted_numpy.flatten()
+    forecasted_reshaped = forecasted_numpy.reshape(-1)
     
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.plot(forecasted_reshaped, label='Forecasted Stock Price', color='orange')

@@ -51,13 +51,14 @@ def forecast_next_price(input_sequence: torch.Tensor):
     return predicted_price  # Return the predicted price as a scalar
 
 # dummy stock data for testing
-dummy_data = torch.rand(32, 30, 1)  # Shape: (batch_size, sequence_length, num_features)
-dummy_data = dummy_data.to(device)
-print("Dummy data shape: ", dummy_data.shape)
-print("Original dummy data: ", dummy_data)
-print("Dummy data as flattened: ", dummy_data.flatten())
+if __name__ == "__main__":
+    dummy_data = torch.rand(32, 30, 1)  # Shape: (batch_size, sequence_length, num_features)
+    dummy_data = dummy_data.to(device)
+    print("Dummy data shape: ", dummy_data.shape)
+    print("Original dummy data: ", dummy_data)
+    print("Dummy data as flattened: ", dummy_data.flatten())
 
-forecasted_price = forecast_next_price(dummy_data)
-print("Forecasted price shape: ", forecasted_price.shape if isinstance(forecasted_price, torch.Tensor) else "Not a tensor")
-print("Forecasted price: ", forecasted_price)
-print("Forecasted next price flattened: ", forecasted_price.flatten())
+    forecasted_price = forecast_next_price(dummy_data)
+    print("Forecasted price shape: ", forecasted_price.shape if isinstance(forecasted_price, torch.Tensor) else "Not a tensor")
+    print("Forecasted price: ", forecasted_price)
+    print("Forecasted next price flattened: ", forecasted_price.flatten())
