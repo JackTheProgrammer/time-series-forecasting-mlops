@@ -37,7 +37,7 @@ except FileNotFoundError:
     scaled_stock_prices = scaler.fit_transform(raw_close_prices)
     SCALED_PKL_DIR = Path('scaled_transform')
     SCALED_PKL_DIR.mkdir(exist_ok=True)
-    joblib.dump(scaler, SCALED_PKL_DIR / f'{datetime.now().strftime('%Y-%m-%d')}_scaled_stock.pkl')
+    joblib.dump(scaler, SCALED_PKL_DIR / f'{datetime.now().strftime('%Y-%m-%d')}_scaled_gold_stock.pkl')
 
 # 3. Create Dataset and DataLoader
 gold_stock_dataset = GoldStockPriceDataset(scaled_stock_prices, window_size=30)
