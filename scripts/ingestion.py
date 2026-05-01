@@ -50,8 +50,8 @@ def forecast_next_price(input_sequence: torch.Tensor):
         predicted_price = loaded_model(input_sequence)  # Get the predicted price
     return predicted_price  # Return the predicted price as a scalar
 
-# dummy stock data for testing
 if __name__ == "__main__":
+    # dummy stock data for testing
     dummy_data = torch.rand(32, 30, 1)  # Shape: (batch_size, sequence_length, num_features)
     dummy_data = dummy_data.to(device)
     print("Dummy data shape: ", dummy_data.shape)
