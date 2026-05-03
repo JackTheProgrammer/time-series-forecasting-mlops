@@ -13,3 +13,5 @@
 /models
 /scripts/app/server/__pycache__
 /scaled_transform
+/config/dvc-mlops-stock-forecasting-9c0810c064c3.json
+/.dvc/config
