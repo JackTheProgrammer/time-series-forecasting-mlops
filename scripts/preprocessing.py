@@ -7,14 +7,14 @@ data_dir = 'data'
 raw_data_dir = f"{data_dir}/raw"
 processed_data_dir = f"{data_dir}/processed"
 
-data_path = Path(data_dir)
-data_path.mkdir(parents=True, exist_ok=True)
+data_pure_path = Path(data_dir)
+data_pure_path.mkdir(parents=True, exist_ok=True)
 
-raw_data_path = Path(raw_data_dir)
-raw_data_path.mkdir(parents=True, exist_ok=True)
+raw_data_pure_path = Path(raw_data_dir)
+raw_data_pure_path.mkdir(parents=True, exist_ok=True)
 
-processed_data_path = Path(processed_data_dir)
-processed_data_path.mkdir(parents=True, exist_ok=True)
+processed_data_pure_path = Path(processed_data_dir)
+processed_data_pure_path.mkdir(parents=True, exist_ok=True)
 
 data = download("GC=F", start='2010-01-01', end=datetime.now().strftime("%Y-%m-%d"))
 data = data[["Close"]]
