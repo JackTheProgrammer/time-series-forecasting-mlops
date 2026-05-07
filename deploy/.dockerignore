@@ -12,3 +12,10 @@
 /scripts/api/__pycache__
 /scripts/app/__pycache__
 /scripts/architectures/__pycache__
+scripts/app/server/__pycache__
+.dvcignore
+.dvc
+data.dvc
+models.dvc
+scaled_transform.dvc
+winner_models.dvc
