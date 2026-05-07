@@ -1,5 +1,6 @@
 .vscode
 /config/.env
+/config
 /data
 /model
 /__pycache__
