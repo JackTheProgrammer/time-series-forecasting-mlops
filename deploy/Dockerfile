@@ -16,13 +16,21 @@ RUN pip install --no-cache-dir --extra-index-url https://download.pytorch.org/wh
 # 5. Install the rest of the requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 6. Finally, copy the rest of the project
+# 6. Copy the project
 COPY . .
 
-# 7. Running the crafted RESTful API
-RUN python scripts/api/main.py
+# 7. Create a startup script (The "Process Manager")
+# This runs the API in the background (&) and Streamlit in the foreground
+RUN echo "#!/bin/sh\n\
+python scripts/api/main.py &\n\
+streamlit run scripts/app/home/home.py --server.port=8501 --server.address=0.0.0.0" > /project/start.sh
 
-# 8. Expose Streamlit port and the running the streamlit app via CMD
+# 8. Give execution permission
+RUN chmod +x /project/start.sh
+
+# 9. Expose both ports (API usually 5050, Streamlit 8501)
+EXPOSE 5050
 EXPOSE 8501
 
-CMD ["streamlit", "run", "scripts/app/home.py"]
+# 10. Launch the script
+CMD ["/project/start.sh"]
