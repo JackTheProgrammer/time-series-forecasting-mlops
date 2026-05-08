@@ -3,6 +3,9 @@
 /config
 /__pycache__
 *.ipynb_checkpoints
+/data
+/winner_models
+/models
 /scripts/__pycache__
 /scripts/api/__pycache__
 /scripts/app/__pycache__
