@@ -69,7 +69,7 @@ def validate_model(model: nn.Module, val_loader: DataLoader) -> float | Any:
 
 WORK_DIR = Path("models")
 WORK_DIR.mkdir(parents=True, exist_ok=True)
-EPOCHS = 400
+EPOCHS = 400 if torch.cuda.is_available() else 5
 
 class EarlyStopper:
     def __init__(
