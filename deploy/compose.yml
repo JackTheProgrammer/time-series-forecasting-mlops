@@ -1,0 +1,3 @@
+services:
+  forecasting-app:
+    build: .
