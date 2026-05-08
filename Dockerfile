@@ -15,22 +15,22 @@ RUN pip install --no-cache-dir --extra-index-url https://download.pytorch.org/wh
 # 5. Install the rest of the requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 6. Copy the project
+# 6. Copy everything from the ROOT (not just deploy folder)
 COPY . .
 
-# 7. Create a startup script (The "Process Manager")
-# This runs the API in the background (&) and Streamlit in the foreground
+# 7. Create a startup script (Fixed filenames and paths)
 RUN echo "#!/bin/sh\n\
+python scripts/preprocessing.py\n\
 python scripts/dl_pipeline.py\n\
 python scripts/api/main.py &\n\
-streamlit run scripts\\app\\home\\home.py --server.port=8501 --server.address=0.0.0.0" > /project/start.sh
+streamlit run scripts/app/home/home.py --server.port=8501 --server.address=0.0.0.0" > /project/start.sh
 
-# 8. Give execution permission
+# 8. Permissions
 RUN chmod +x /project/start.sh
 
-# 9. Expose both ports (API usually 5050, Streamlit 8501)
+# 9. Expose Ports
 EXPOSE 5050
 EXPOSE 8501
 
-# 10. Launch the script
+# 10. Launch
 CMD ["/project/start.sh"]
