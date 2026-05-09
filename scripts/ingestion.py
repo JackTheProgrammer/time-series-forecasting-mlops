@@ -1,24 +1,28 @@
 import torch
-from torch import nn
 from datetime import datetime
 import os, sys
+from pathlib import Path
 
 sys.path.append('.') # to ensure we can import from the src directory regardless of where this script is run from
 sys.path.append('./') # to register the current directory for imports as well, just in case
 
 torch.manual_seed(42)
 
-winner_root_dir = f'winner_models\\{datetime.today().year}'
+# winner_root_dir = f'winner_models\\{datetime.today().year}'
 
 saved_wts_paths = []
 
-for model_dir in os.listdir(winner_root_dir):
-    model_path = os.path.join(winner_root_dir, model_dir)
-    if os.path.isfile(model_path) and model_path.endswith('.pt'):
-        print(f"Loaded model from: {model_path}")
-        saved_wts_paths.append(model_path)
-    else:
-        continue
+winner_root_dir = Path("winner_models") / str(datetime.today().year)
+
+# Then update your loop to handle the Path object:
+if not winner_root_dir.exists():
+    print(f"Directory {winner_root_dir} does not exist yet.")
+    saved_wts_paths = []
+else:
+    for model_file in winner_root_dir.iterdir():
+        if model_file.is_file() and model_file.suffix == '.pt':
+            print(f"Loaded model from: {model_file}")
+            saved_wts_paths.append(str(model_file))
 
 # to get the latest of the winners, i'll pick the one with the most recent modified time
 latest_model_path = max(saved_wts_paths, key=os.path.getmtime)

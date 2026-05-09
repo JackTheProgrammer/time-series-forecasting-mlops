@@ -1,17 +1,17 @@
 # --- Core Math & Data ---
-numpy==1.26.4
-pandas==2.2.2
-scikit-learn==1.4.2
+numpy==2.2.6
+pandas==2.3.3
+scikit-learn==1.7.2
 
 # --- Data & Finance ---
-yfinance==0.2.40
-tqdm==4.66.4
+yfinance==1.3.0
+tqdm==4.67.1
 
 # --- Visualization & Dashboard ---
-streamlit>=1.35.0
-matplotlib>=3.8.4
+streamlit==1.55.0
+matplotlib==3.10.7
 
 # --- API & Deployment ---
-fastapi>=0.111.0
-uvicorn>=0.29.0
-python-dotenv>=1.0.1
+fastapi==0.117.0
+uvicorn==0.42.0
+python-dotenv==1.2.1
