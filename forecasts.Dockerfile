@@ -11,4 +11,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN echo ""
+RUN echo "#!/bin/sh\n\
+    (python scripts/api/main.py &) &&\
+    streamlit run scripts/app/home/daily_forecasts.py --server.port=8501 --server.address=0.0.0.0" > forecasts/forecasting.sh
+
+RUN chmod u+x forecasts/forecasting.sh
+
+EXPOSE 5050
+EXPOSE 8501
+
+ENTRYPOINT [ "forecasts/forecasting.sh" ]

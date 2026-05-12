@@ -26,8 +26,12 @@ raw_close_prices = todays_gold_stock_price[["Close"]].values
 
 # 2. CRITICAL STEP: Load your training scaler and apply it
 # Replace 'path/to/your/saved_scaler.pkl' with your actual file path
+SCALED_PKL_DIR = Path('scaled_transform')
+SCALED_PKL_DIR.mkdir(exist_ok=True)
+
+SAVED_SCALE_PATH = SCALED_PKL_DIR / f'{datetime.now().strftime('%Y-%m-%d')}_scaled_gold_stock.pkl'
 try:
-    scaler = joblib.load('path/to/your/saved_scaler.pkl')
+    scaler = joblib.load(SAVED_SCALE_PATH)
     scaled_stock_prices = scaler.transform(raw_close_prices)
 except FileNotFoundError:
     print("WARNING: Scaler not found. You MUST load the training scaler.")
@@ -35,9 +39,7 @@ except FileNotFoundError:
     from sklearn.preprocessing import MinMaxScaler
     scaler = MinMaxScaler(feature_range=(0, 1))
     scaled_stock_prices = scaler.fit_transform(raw_close_prices)
-    SCALED_PKL_DIR = Path('scaled_transform')
-    SCALED_PKL_DIR.mkdir(exist_ok=True)
-    joblib.dump(scaler, SCALED_PKL_DIR / f'{datetime.now().strftime('%Y-%m-%d')}_scaled_gold_stock.pkl')
+    joblib.dump(scaler, SAVED_SCALE_PATH)
 
 # 3. Create Dataset and DataLoader
 gold_stock_dataset = GoldStockPriceDataset(scaled_stock_prices, window_size=30)
