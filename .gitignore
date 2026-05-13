@@ -16,3 +16,4 @@
 /config/dvc-mlops-stock-forecasting-9c0810c064c3.json
 /.dvc/config
 /config/dvc-forecasts-artifacts-c6e4dfa41b4e.json
+/config/gdrive-creds.json
