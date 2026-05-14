@@ -2,7 +2,8 @@ from yfinance import download
 from datetime import datetime
 from torch import tensor, float32
 from torch.utils.data import Dataset, DataLoader
-# import numpy as np
+
+from sklearn.preprocessing import MinMaxScaler
 from pathlib import Path
 import joblib # Needed to load your saved scaler
 
@@ -30,16 +31,19 @@ SCALED_PKL_DIR = Path('scaled_transform')
 SCALED_PKL_DIR.mkdir(exist_ok=True)
 
 SAVED_SCALE_PATH = SCALED_PKL_DIR / f'{datetime.now().strftime('%Y-%m-%d')}_scaled_gold_stock.pkl'
-try:
-    scaler = joblib.load(SAVED_SCALE_PATH)
-    scaled_stock_prices = scaler.transform(raw_close_prices)
-except FileNotFoundError:
-    print("WARNING: Scaler not found. You MUST load the training scaler.")
-    # Fallback ONLY for testing code execution (do not use in production)
-    from sklearn.preprocessing import MinMaxScaler
-    scaler = MinMaxScaler(feature_range=(0, 1))
-    scaled_stock_prices = scaler.fit_transform(raw_close_prices)
-    joblib.dump(scaler, SAVED_SCALE_PATH)
+# try:
+#     scaler = joblib.load(SAVED_SCALE_PATH)
+#     scaled_stock_prices = scaler.transform(raw_close_prices)
+# except FileNotFoundError:
+#     print("WARNING: Scaler not found. You MUST load the training scaler.")
+#     # Fallback ONLY for testing code execution (do not use in production) 
+#     scaler = MinMaxScaler(feature_range=(0, 1))
+#     scaled_stock_prices = scaler.fit_transform(raw_close_prices)
+#     joblib.dump(scaler, SAVED_SCALE_PATH)
+
+scaler = MinMaxScaler(feature_range=(0, 1))
+scaled_stock_prices = scaler.fit_transform(raw_close_prices)
+joblib.dump(scaler, SAVED_SCALE_PATH)
 
 # 3. Create Dataset and DataLoader
 gold_stock_dataset = GoldStockPriceDataset(scaled_stock_prices, window_size=30)
