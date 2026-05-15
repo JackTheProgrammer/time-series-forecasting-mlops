@@ -14,3 +14,13 @@ data.dvc
 models.dvc
 scaled_transform.dvc
 winner_models.dvc
+/scripts/dl_pipeline.py
+/scripts/evaluate.py
+/scripts/preprocessing.py
+/notebooks
+/demos
+.dockerignore
+.gitignore
+LICENSE
+README.md
+Jenkinsfile
