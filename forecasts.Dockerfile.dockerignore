@@ -1,0 +1,16 @@
+.vscode
+/config/.env
+/config
+/__pycache__
+*.ipynb_checkpoints
+/scripts/__pycache__
+/scripts/api/__pycache__
+/scripts/app/__pycache__
+/scripts/architectures/__pycache__
+scripts/app/server/__pycache__
+.dvcignore
+.dvc
+data.dvc
+models.dvc
+scaled_transform.dvc
+winner_models.dvc
