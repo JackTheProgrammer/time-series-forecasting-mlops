@@ -12,7 +12,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # to prevent the immediate exit with return code of 0 
-# and needless execution of the streamlit command
+# and needless execution of the streamlit command, thus 
+# preventing the streamlit app from starting only to be
+# inevitably failed no proper API running
 RUN echo "#!/bin/sh\n\
     python scripts/api/main.py &\n\
     streamlit run scripts/app/home/daily_forecasts.py --server.port=8501 --server.address=0.0.0.0 &\n\
