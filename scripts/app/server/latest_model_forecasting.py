@@ -34,22 +34,11 @@ scaled_pkls_paths = []
 
 for pkl_file in SCALED_PKL_DIR.iterdir():
     if pkl_file.is_file() and pkl_file.suffix == '.pkl':
-        # print(f"Adding the {pkl_file.name} to the scaled pkl paths")
         scaled_pkls_paths.append(str(pkl_file))
 
 latest_pkl_file = max(scaled_pkls_paths, key=os.path.getmtime)
 
 SAVED_SCALE_PATH = Path(latest_pkl_file)
-# print("Saved scaler pickle file latest: ", SAVED_SCALE_PATH, "\nType: ", type(SAVED_SCALE_PATH))
-# try:
-#     scaler = joblib.load(SAVED_SCALE_PATH)
-#     scaled_stock_prices = scaler.transform(raw_close_prices)
-# except FileNotFoundError:
-#     print("WARNING: Scaler not found. You MUST load the training scaler.")
-#     # Fallback ONLY for testing code execution (do not use in production) 
-#     scaler = MinMaxScaler(feature_range=(0, 1))
-#     scaled_stock_prices = scaler.fit_transform(raw_close_prices)
-#     joblib.dump(scaler, SAVED_SCALE_PATH)
 
 scaler = joblib.load(SAVED_SCALE_PATH)
 scaled_stock_prices = scaler.transform(raw_close_prices)
