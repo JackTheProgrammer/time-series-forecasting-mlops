@@ -1,3 +1,34 @@
 services:
-  default-app:
-    build: .
+  # Service 1: Core Pipeline & Training Environment
+  ml-pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gold_ml_pipeline
+    image: gold_stock_prices_predictions_mlops:latest
+    volumes:
+      # Mount the workspace so code changes and DVC artifacts sync instantly
+      - .:/projects
+    # env_file:
+    #   - config/.env
+
+  # Service 2: Live FastAPI Serving + Streamlit UI Dashboard
+  forecasting-app:
+    build:
+      context: .
+      dockerfile: forecasts.Dockerfile
+    container_name: gold_ui_serving_app
+    image: daily-forecasting:latest
+    ports:
+      - "5050:5050"  # FastAPI port mapping
+      - "8501:8501"  # Streamlit port mapping
+    volumes:
+      # Only mount the necessary prediction artifacts to keep serving lightweight
+      - ./winner_models:/forecasts/winner_models
+      - ./scaled_transform:/forecasts/scaled_transform
+      - ./data:/forecasts/data
+    # env_file:
+    #   - config/.env
+    restart: unless-stopped
+    depends_on:
+      - ml-pipeline
