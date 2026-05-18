@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gold-forecasting-deployment
+  labels:
+    app: gold-forecaster
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gold-forecaster
+  template:
+    metadata:
+      labels:
+        app: gold-forecaster
+    spec:
+      containers:
+        - name: forecasting-app
+          image: daily-forecasting:latest  
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5050  # FastAPI
+            - containerPort: 8501  # Streamlit
+          env:
+            - name: ENV_MODE
+              value: "production"
+          # 1. Container says: "I want to use a volume named model-storage"
+          volumeMounts:
+            - name: model-storage
+              mountPath: /forecasts/winner_models
+      
+      # 2. FIXED: Pod says: "Here is model-storage, it points to the PVC called model-pvc"
+      volumes:
+        - name: model-storage
+          persistentVolumeClaim:
+            claimName: model-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: model-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

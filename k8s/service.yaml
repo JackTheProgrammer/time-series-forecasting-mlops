@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gold-forecasting-service
+spec:
+  type: LoadBalancer  # Local deployment (Best for: Minikube/Kind)
+  selector:
+    app: gold-forecaster
+  ports:
+    - name: fastapi
+      protocol: TCP
+      port: 5050
+      targetPort: 5050
+      nodePort: 30050  # Accessible at http://localhost:30050
+    - name: streamlit
+      protocol: TCP
+      port: 8501
+      targetPort: 8501
+      nodePort: 30801  # Accessible at http://localhost:30801
