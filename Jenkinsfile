@@ -31,6 +31,7 @@ pipeline {
 
                 echo 'Tracking new data/model hashes with DVC...'
                 bat "dvc add data/"
+                bat "dvc add models/"
                 bat "dvc add winner_models/"
                 bat "dvc add scaled_transform/"
                 
