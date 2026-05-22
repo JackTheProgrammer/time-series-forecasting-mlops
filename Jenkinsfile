@@ -1,62 +1,65 @@
 pipeline {
-    // Runs on any available Jenkins agent
     agent any
 
+    triggers {
+        // Triggers automatically every 4 months on the 1st day at midnight
+        cron('0 0 1 */4 *')
+    }
+
     environment {
-        APP_NAME = 'daily-forecasting'
+        APP_NAME = 'daily-forecasts'
         TAG = 'latest'
-        K8S_DIR = 'k8s'
     }
 
     stages {
-        stage('Checkout Code') {
+        stage('1. Run Execution Phase') {
             steps {
-                // Automatically pulls the branch that triggered the build
-                checkout scm
+                echo 'Executing preprocessing and training inside the ml container...'
+                bat "docker compose run --rm ml-pipeline python scripts/preprocessing.py"
+                bat "docker compose run --rm ml-pipeline python scripts/dl_pipeline.py"
             }
         }
 
-        stage('DVC Model Synchronization') {
+        stage('2. Sync Model Weights') {
             steps {
-                echo 'Pulling latest gold forecasting models and data via DVC...'
-                // Fetches the .pt and .pkl files into the workspace
-                sh 'dvc pull'
-            }
-        }
-
-        stage('Build Serving Image') {
-            steps {
-                echo 'Building the FastAPI + Streamlit deployment image...'
-                sh "docker build -t ${APP_NAME}:${TAG} -f forecasts.Dockerfile ."
-            }
-        }
-
-        stage('Load Image to Minikube') {
-            steps {
-                echo 'Injecting the new image directly into the Minikube cluster...'
-                // Bypasses the need for Docker Hub by loading directly to your local cluster
-                sh "minikube image load ${APP_NAME}:${TAG}"
-            }
-        }
-
-        stage('Deploy to Kubernetes') {
-            steps {
-                echo 'Applying Kubernetes manifests...'
-                sh "kubectl apply -f ${K8S_DIR}/deployment.yaml"
-                sh "kubectl apply -f ${K8S_DIR}/service.yaml"
+                echo 'Tracking new data/model hashes with DVC...'
+                bat "dvc add winner_models/"
+                bat "dvc push"
                 
-                // Forces Kubernetes to spin up new pods with the freshly loaded image
-                sh "kubectl rollout restart deployment gold-forecasting-deployment"
+                echo 'Updating git pointer files...'
+                bat "git add winner_models.dvc"
+                bat "git diff --quiet && git diff --staged --quiet || git commit -m 'automated: 4-month scheduled model retraining update'"
+                bat "git push origin main"
+            }
+        }
+
+        stage('3. Build Deployment Image') {
+            steps {
+                echo 'Building production docker image...'
+                bat "docker build -t %APP_NAME%:%TAG% -f forecasts.Dockerfile ."
+            }
+        }
+
+        stage('4. Local K8s Orchestration') {
+            steps {
+                echo 'Stopping any local compose services to clear ports...'
+                bat "docker compose down"
+                
+                echo 'Loading image into Minikube and spinning up services...'
+                bat "minikube image load %APP_NAME%:%TAG%"
+                bat "kubectl apply -f k8s/deployment.yaml"
+                bat "kubectl apply -f k8s/service.yaml"
+                bat "kubectl rollout restart deployment gold-forecasting-deployment"
             }
         }
     }
 
     post {
         success {
-            echo '✅ Pipeline executed successfully! The updated gold forecasting dashboard is live.'
+            echo '✅ Local retraining and orchestration successful!'
         }
         failure {
-            echo '❌ Pipeline failed. Please review the stage logs to identify the bottleneck.'
+            echo '❌ Pipeline failed. Check Jenkins console logs.'
         }
     }
 }
