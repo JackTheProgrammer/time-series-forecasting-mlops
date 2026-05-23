@@ -3,7 +3,7 @@ pipeline {
 
     triggers {
         // Triggers automatically every 4 months on the 1st day at midnight
-        cron('0 0 1 */4 *')
+        cron('0 17 1 */4 *')
     }
 
     environment {
@@ -30,10 +30,10 @@ pipeline {
                 }
 
                 echo 'Tracking new data/model hashes with DVC...'
-                bat "dvc add data/"
-                bat "dvc add models/"
-                bat "dvc add winner_models/"
-                bat "dvc add scaled_transform/"
+                bat "dvc add data"
+                bat "dvc add models"
+                bat "dvc add winner_models"
+                bat "dvc add scaled_transform"
                 
                 echo 'Pushing model weights to Google Drive Remote...'
                 bat "dvc push -r gdrive_remote"
