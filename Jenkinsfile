@@ -9,7 +9,7 @@ pipeline {
     environment {
         // REPLACE 'your_dockerhub_username' with your actual Docker Hub account name
         DOCKER_HUB_USER = 'fawadawan143'
-        APP_NAME        = 'daily-forecasts'
+        APP_NAME        = 'daily-forecasting'
         TAG             = 'latest'
         COMMIT_DATE     = ''
     }
