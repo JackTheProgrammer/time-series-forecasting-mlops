@@ -34,6 +34,7 @@ jobs:
 
     - name: Pull Data from Remote Storage
       env:
+        # The credentials for using google drive as DVC remote.
         GDRIVE_CREDS: ${{ secrets.GDRIVE_CREDS }}
       run: |
         dvc pull
