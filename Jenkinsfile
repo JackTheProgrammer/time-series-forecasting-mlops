@@ -31,6 +31,9 @@ pipeline {
                 }
 
                 echo 'Tracking new data/model hashes with DVC...'
+                // To establish uniformity, we pull the latest DVC-tracked artifacts before adding new ones. 
+                // This ensures we are building on top of the most recent state of the project.
+                bat "dvc pull -r gdrive_remote"
                 bat "dvc add data"
                 bat "dvc add models"
                 bat "dvc add winner_models"
