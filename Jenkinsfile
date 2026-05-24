@@ -18,8 +18,8 @@ pipeline {
         stage('1. Continuous Integration: Run ML Pipeline') {
             steps {
                 echo 'Executing preprocessing and deep learning training layers...'
-                bat "docker compose run --rm ml-pipeline python scripts/preprocessing.py"
-                bat "docker compose run --rm ml-pipeline python scripts/dl_pipeline.py"
+                bat "python scripts/preprocessing.py"
+                bat "python scripts/dl_pipeline.py"
             }
         }
 
@@ -59,20 +59,20 @@ pipeline {
             }
         }
 
-        stage('4. Continuous Deployment: Local K8s Orchestration') {
-            steps {
-                echo 'Tearing down old compose configurations to free system ports...'
-                bat "docker compose down"
+        // stage('4. Continuous Deployment: Local K8s Orchestration') {
+        //     steps {
+        //         echo 'Tearing down old compose configurations to free system ports...'
+        //         bat "docker compose down"
                 
-                echo 'Sideloading the newly verified image directly into Minikube...'
-                bat "minikube image load %DOCKER_HUB_USER%/%APP_NAME%:%TAG%"
+        //         echo 'Sideloading the newly verified image directly into Minikube...'
+        //         bat "minikube image load %DOCKER_HUB_USER%/%APP_NAME%:%TAG%"
                 
-                echo 'Applying Kubernetes manifests and forcing rolling restart...'
-                bat "kubectl apply -f k8s/deployment.yaml"
-                bat "kubectl apply -f k8s/service.yaml"
-                bat "kubectl rollout restart deployment gold-forecasting-deployment"
-            }
-        }
+        //         echo 'Applying Kubernetes manifests and forcing rolling restart...'
+        //         bat "kubectl apply -f k8s/deployment.yaml"
+        //         bat "kubectl apply -f k8s/service.yaml"
+        //         bat "kubectl rollout restart deployment gold-forecasting-deployment"
+        //     }
+        // }
     }
 
     post {
