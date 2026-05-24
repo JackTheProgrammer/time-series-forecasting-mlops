@@ -35,7 +35,10 @@ pipeline {
                     bat "dvc init"
                     bat "git init"
                     bat "git add ."
-                    bat "git commit -m 'initial commit: setting up DVC tracking for model artifacts"
+                    bat "git commit -m 'initial commit: setting up DVC tracking for model artifacts'"
+                    bat "git branch -M main"
+                    bat "git remote add origin https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git"
+                    bat "git push -u origin main"
                 }
 
                 // To establish uniformity, we pull the latest DVC-tracked artifacts before adding new ones. 
