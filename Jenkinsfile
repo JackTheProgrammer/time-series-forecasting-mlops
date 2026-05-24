@@ -12,6 +12,7 @@ pipeline {
         APP_NAME        = 'daily-forecasting'
         TAG             = 'latest'
         COMMIT_DATE     = ''
+        // PYTHON_PATH     = ''
     }
 
     stages {
