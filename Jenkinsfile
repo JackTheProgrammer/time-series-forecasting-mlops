@@ -30,6 +30,14 @@ pipeline {
                     env.COMMIT_DATE = new Date().format("yyyy-MM-dd HH:mm:ss")
                 }
 
+                if(!fileExists('.dvc')){
+                    echo 'making DVC repo...'
+                    bat "dvc init"
+                    bat "git init"
+                    bat "git add ."
+                    bat "git commit -m 'initial commit: setting up DVC tracking for model artifacts"
+                }
+
                 // To establish uniformity, we pull the latest DVC-tracked artifacts before adding new ones. 
                 // This ensures we are building on top of the most recent state of the project.
                 bat "dvc pull -r gdrive_remote"
