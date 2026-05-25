@@ -4,7 +4,7 @@ on:
   schedule:
     # UCT time: 11:00 on the 1st day of every 4th month
     # Peshawar time: 16:00 p.m on the 1st day of every 4th month
-    - cron: "0 11 1 */4 *" # Run automatically every 4 months on the 1st day at midnight
+    - cron: "0 11 1 */4 *" 
 
   # Allows manual triggering of the workflow from GitHub UI
   workflow_dispatch:
