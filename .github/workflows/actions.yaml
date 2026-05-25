@@ -4,7 +4,7 @@ on:
   schedule:
     # UCT time: 11:00 on the 1st day of every 4th month
     # Peshawar time: 16:00 p.m on the 1st day of every 4th month
-    - cron: "0 11 1 */4 *" 
+    - cron: "0 11 1 */4 *"
 
   # Allows manual triggering of the workflow from GitHub UI
   workflow_dispatch:
@@ -35,7 +35,15 @@ jobs:
           # The credentials for using google drive as DVC remote.
           GDRIVE_CREDS: ${{ secrets.GDRIVE_CREDS }}
         run: |
-          dvc pull
+          dvc init
+          dvc remote add -d gdrive_remote gdrive://1Xo9n8s0l7m2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8
+          mkdir -p config
+          echo $GDRIVE_CREDS > config/gdrive_creds.json
+          # modifying the dvc remote to use the gdrive user credentials
+          dvc remote modify gdrive_remote gdrive_use_credentials_file true
+          # modifying the dvc remote to use the gdrive user credentials file
+          dvc remote modify gdrive_remote gdrive_user_credentials_file config/gdrive_creds.json
+          dvc pull -r gdrive_remote
 
       - name: Run Pipeline (Preprocessing & Training)
         run: |
@@ -44,11 +52,17 @@ jobs:
 
       - name: Push New Artifacts to DVC
         run: |
-          dvc add data models winner_models scaled_transform
+          dvc add data 
+          dvc add models 
+          dvc add winner_models 
+          dvc add scaled_transform
+          dvc commit -f
           dvc push
 
   builds-daily-forecasting-image:
     runs-on: ubuntu-latest
+    needs:
+      - retrain
 
     steps:
       - name: Checkout Code
