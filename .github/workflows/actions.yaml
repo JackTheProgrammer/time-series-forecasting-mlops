@@ -43,6 +43,7 @@ jobs:
           dvc remote modify gdrive_remote gdrive_use_credentials_file true
           # modifying the dvc remote to use the gdrive user credentials file
           dvc remote modify gdrive_remote gdrive_user_credentials_file config/gdrive_creds.json
+          dvc pull -r gdrive_remote
 
       - name: Run Pipeline (Preprocessing & Training)
         run: |
@@ -56,7 +57,7 @@ jobs:
           dvc add winner_models 
           dvc add scaled_transform
           dvc commit -f
-          dvc pull -r gdrive_remote
+          dvc push -r gdrive_remote
 
   builds-daily-forecasting-image:
     runs-on: ubuntu-latest
