@@ -57,7 +57,7 @@ jobs:
           dvc add winner_models 
           dvc add scaled_transform
           dvc commit -f
-          dvc push
+          dvc pull -r gdrive_remote
 
   builds-daily-forecasting-image:
     runs-on: ubuntu-latest
