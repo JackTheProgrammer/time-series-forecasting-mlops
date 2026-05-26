@@ -43,7 +43,6 @@ jobs:
           dvc remote modify gdrive_remote gdrive_use_credentials_file true
           # modifying the dvc remote to use the gdrive user credentials file
           dvc remote modify gdrive_remote gdrive_user_credentials_file config/gdrive_creds.json
-          dvc pull -r gdrive_remote
 
       - name: Run Pipeline (Preprocessing & Training)
         run: |
