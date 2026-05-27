@@ -90,6 +90,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Download DVC Artifacts
+        uses: actions/download-artifact@v7
+        with:
+          name: dvc-artifacts
+          path: . # Downloading the DVC artifacts to the root of the repository for dockerization
+
       - name: Setting up Docker buildx
         uses: docker/setup-buildx-action@v3
 
