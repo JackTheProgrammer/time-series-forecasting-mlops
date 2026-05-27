@@ -106,7 +106,7 @@ jobs:
           images: ${{ secrets.DOCKER_USERNAME }}/daily-forecasting
           tags: |
             type=raw,value=latest
-            type=sha
+            type=sha,format=short
 
       - name: Build and push daily-forecasting latest image
         uses: docker/build-push-action@v5
