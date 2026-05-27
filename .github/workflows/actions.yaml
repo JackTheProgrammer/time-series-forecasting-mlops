@@ -36,23 +36,16 @@ jobs:
         env:
           GDRIVE_CREDS: ${{ secrets.GDRIVE_CREDS }}
         run: |
-          # 1. Initialize DVC dynamically if the tracking folder is missing entirely
+          # 1. Initialize dynamically if missing
           if [ ! -d ".dvc" ]; then
             echo "DVC directory not found. Initializing..."
             dvc init --no-scm
           fi
 
-          # 2. Force add/overwrite the remote definition so it is guaranteed to exist
+          # 2. Force add the remote destination
           dvc remote add -d -f gdrive_remote gdrive://1Xo9n8s0l7m2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8
-
-          # 3. Drop credentials and modify remote settings
-          mkdir -p config
-          echo "$GDRIVE_CREDS" > config/gdrive_creds.json
           
-          dvc remote modify gdrive_remote gdrive_use_credentials_file true
-          dvc remote modify gdrive_remote gdrive_user_credentials_file config/gdrive_creds.json
-          
-          # 4. Pull artifacts down
+          # 3. Pull data down (Authentication happens automatically via env)
           dvc pull -r gdrive_remote
 
       - name: Run Pipeline (Preprocessing & Training)
