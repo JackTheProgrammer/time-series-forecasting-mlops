@@ -2,7 +2,7 @@ name: MLOps Time Series Retraining
 
 on:
   schedule:
-    # UCT time: 11:00 on the 1st day of every 4th month
+    # UTC time: 11:00 on the 1st day of every 4th month
     # Peshawar time: 16:00 p.m on the 1st day of every 4th month
     - cron: "0 11 1 */4 *"
 
@@ -17,7 +17,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          persist-credentials: true # extremely important for pushing changes back to the repository(Git and DVC)
+          persist-credentials: true # Crucial for pushing metadata changes back
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -34,14 +34,13 @@ jobs:
 
       - name: Pull Data from Remote Storage
         env:
-          # The credentials for using google drive as DVC remote.
           GDRIVE_CREDS: ${{ secrets.GDRIVE_CREDS }}
         run: |
+          # DVC is already initialized via Git. We only dynamically configure the credentials.
           mkdir -p config
-          echo $GDRIVE_CREDS > config/gdrive_creds.json
-          # modifying the dvc remote to use the gdrive user credentials
+          echo "$GDRIVE_CREDS" > config/gdrive_creds.json
+          
           dvc remote modify gdrive_remote gdrive_use_credentials_file true
-          # modifying the dvc remote to use the gdrive user credentials file
           dvc remote modify gdrive_remote gdrive_user_credentials_file config/gdrive_creds.json
           dvc pull -r gdrive_remote
 
@@ -55,8 +54,8 @@ jobs:
           dvc add data 
           dvc add models 
           dvc add winner_models 
-          dvc add scaled_transform
-          dvc commit -f
+          # NOTE: Update the file extension below to match exactly what your script generates (e.g., scaled_transform.pkl)
+          dvc add scaled_transform.pkl
           dvc push -r gdrive_remote
 
       - name: Upload DVC Artifacts for Dockerization
@@ -67,15 +66,17 @@ jobs:
             data
             models
             winner_models
-            scaled_transform
+            scaled_transform.pkl
           retention-days: 1
 
-      - name: Push to GitHub Repository
+      - name: Push Tracking Metadata Back to GitHub Repository
         run: |
           CURRENT_DATETIME=$(TZ="Asia/Karachi" date +"%Y-%m-%d %I:%M:%S %p")
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Stage tracking file pointer changes along with auto-updated .gitignore rules
+          git add data.dvc models.dvc winner_models.dvc scaled_transform.pkl.dvc .gitignore
           
           # Only commit and push if metadata hashes actually changed
           if [ -n "$(git status --porcelain)" ]; then
@@ -100,7 +101,7 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: dvc-artifacts
-          path: . # Downloading the DVC artifacts to the root of the repository for dockerization
+          path: . # Unpacks arrays straight into the project root directory context
 
       - name: Setting up Docker buildx
         uses: docker/setup-buildx-action@v3
