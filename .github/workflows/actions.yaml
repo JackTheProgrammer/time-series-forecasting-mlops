@@ -37,7 +37,6 @@ jobs:
           # The credentials for using google drive as DVC remote.
           GDRIVE_CREDS: ${{ secrets.GDRIVE_CREDS }}
         run: |
-          dvc remote add -d gdrive_remote gdrive://1Xo9n8s0l7m2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8
           mkdir -p config
           echo $GDRIVE_CREDS > config/gdrive_creds.json
           # modifying the dvc remote to use the gdrive user credentials
