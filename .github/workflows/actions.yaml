@@ -104,6 +104,9 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/daily-forecasting
+          tags: |
+            type=raw,value=latest
+            type=sha
 
       - name: Build and push daily-forecasting latest image
         uses: docker/build-push-action@v5
