@@ -58,6 +58,17 @@ jobs:
           dvc add scaled_transform
           dvc commit -f
           dvc push -r gdrive_remote
+      
+      - name: Upload DVC Artifacts for Dockerization
+        uses: actions/upload-artifact@v7
+        with:
+          name: dvc-artifacts
+          path: |
+            data
+            models
+            winner_models
+            scaled_transform
+          retention-days: 1
 
   builds-daily-forecasting-image:
     runs-on: ubuntu-latest
