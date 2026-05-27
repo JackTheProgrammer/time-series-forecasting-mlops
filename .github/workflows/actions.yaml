@@ -76,8 +76,16 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Automated retraining and artifact update at $CURRENT_DATETIME PKT. [skip ci]"
-          git push -u origin main
+          
+          # Only commit and push if metadata hashes actually changed
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "New model mutations detected. Syncing tracking files to GitHub..."
+            git commit -m "Automated retraining and artifact update at $CURRENT_DATETIME PKT. [skip ci]"
+            # FIXES DETACHED HEAD: Pushes explicitly from HEAD to your main tracking branch
+            git push origin HEAD:main
+          else
+            echo "Model training yielded identical artifacts. Skipping Git push."
+          fi
 
   builds-daily-forecasting-image:
     runs-on: ubuntu-latest
