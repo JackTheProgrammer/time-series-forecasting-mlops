@@ -61,7 +61,6 @@ jobs:
           dvc add data 
           dvc add models 
           dvc add winner_models 
-          # NOTE: Update the file extension below to match exactly what your script generates (e.g., scaled_transform.pkl)
           dvc add scaled_transform
           dvc push -r gdrive_remote
 
