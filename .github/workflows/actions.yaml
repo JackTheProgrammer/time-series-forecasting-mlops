@@ -187,6 +187,10 @@ jobs:
           
           # 3. Pull data down (Authentication automatically env se uthayega)
           dvc pull -r gdrive_remote
+      
+      - name: Installing torch library
+        run: |
+          pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu torch==2.6.0
 
       - name: Run Pipeline (Preprocessing & Training)
         run: |
