@@ -208,7 +208,7 @@ jobs:
             dvc add scaled_transform
           fi
           
-          dvc push -r gdrive_remote
+          dvc push
 
       - name: Upload DVC Artifacts for Dockerization
         uses: actions/upload-artifact@v7
