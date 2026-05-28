@@ -156,6 +156,9 @@ jobs:
     env:
       GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDS }}
 
+    permissions:
+      contents: write # Required for pushing metadata changes back to the repository
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -231,7 +234,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           
           # Stage tracking file pointer changes along with auto-updated .gitignore rules
-          git add data.dvc models.dvc winner_models.dvc scaled_transform*.dvc .gitignore
+          git add .
           
           # Only commit and push if metadata hashes actually changed
           if [ -n "$(git status --porcelain)" ]; then
