@@ -82,7 +82,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           
           # Stage tracking file pointer changes along with auto-updated .gitignore rules
-          git add data.dvc models.dvc winner_models.dvc scaled_transform.pkl.dvc .gitignore
+          git add data.dvc models.dvc winner_models.dvc scaled_transform.dvc .gitignore
           
           # Only commit and push if metadata hashes actually changed
           if [ -n "$(git status --porcelain)" ]; then
