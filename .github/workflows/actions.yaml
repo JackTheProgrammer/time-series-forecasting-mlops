@@ -73,7 +73,7 @@ jobs:
             data
             models
             winner_models
-            scaled_transform.pkl
+            scaled_transform
           retention-days: 1
 
       - name: Push Tracking Metadata Back to GitHub Repository
