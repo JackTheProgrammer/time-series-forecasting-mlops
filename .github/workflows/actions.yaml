@@ -182,11 +182,10 @@ jobs:
             echo "DVC directory not found. Initializing..."
             dvc init --no-scm
           fi
-
-          # 2. Force add/overwrite the remote definition
-          dvc remote add -d -f gdrive_remote gdrive://1Xo9n8s0l7m2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8
+          # 2. Force add the remote destination (Credentials are automatically picked up from env)
+          dvc remote add -d -f gdrive_remote gdrive://1ZQhsSgeUSRX0Qy4UYqolBci_wS1Gz-0x
           
-          # 3. Pull data down (Authentication happens automatically in-memory via env)
+          # 3. Pull data down (Authentication automatically env se uthayega)
           dvc pull -r gdrive_remote
 
       - name: Run Pipeline (Preprocessing & Training)
