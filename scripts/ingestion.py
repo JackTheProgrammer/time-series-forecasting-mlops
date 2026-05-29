@@ -12,7 +12,7 @@ torch.manual_seed(42)
 
 saved_wts_paths = []
 
-winner_root_dir = Path("winner_models") / str(datetime.today().year)
+winner_root_dir = Path("winner_models")
 
 # Then update your loop to handle the Path object:
 if not winner_root_dir.exists():
