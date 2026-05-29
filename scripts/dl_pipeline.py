@@ -77,7 +77,7 @@ class EarlyStopper:
         mode='min', 
         architecture_name = ''
     ):
-        self.save_path = f"{architecture_name}_goldstock_prices_{datetime.now().month}_{datetime.today().year}_best_model.pt"
+        self.save_path = f"{architecture_name}_goldstock_prices_{datetime.now().strftime('%Y-%m-%d')}_best_model.pt"
         self.patience = int(EPOCHS * 0.1)  # Set patience to 10% of total epochs
         self.mode = mode
         self.counter = 0
