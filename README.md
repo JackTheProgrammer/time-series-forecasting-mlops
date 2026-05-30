@@ -8,9 +8,9 @@
 
 ## Features
 
-## Demo screenshot
+## 💻 Demo screenshot
 
-![Alt Text](demos/streamlit_app_running_screenshot.png)
+![Alt Screenshot of the dockerized web app running](demos/streamlit_app_running_screenshot.png)
 
 ## 📂 Project structure
 
