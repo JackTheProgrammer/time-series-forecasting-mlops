@@ -8,6 +8,10 @@
 
 ## Features
 
+## Demo screenshot
+
+![Alt Text](demos/streamlit_app_running_screenshot.png)
+
 ## 📂 Project structure
 
 ```text
