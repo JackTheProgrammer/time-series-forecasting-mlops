@@ -67,4 +67,29 @@ time-series-forecasting-mlops/
 
 ## Installation Guide
 
+### Method 1: Using git clone and pip install
+
+```bash
+git clone https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git
+cd time-series-forecasting-mlops
+pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu torch==2.6.0
+pip install --no-cache-dir -r requirements.txt
+```
+
+### Method 2: Using docker image
+
+#### Pulling the image which is runs the entire architectual flow
+
+```bash
+docker pull fawadawan143/gold_stock_prices_predictions_mlops:latest
+docker run -p 8501:8501 5050:5050 fawadawan143/gold_stock_prices_predictions_mlops:latest
+```
+
+#### Pulling the image which is only for forecasting using the latest model
+
+```bash
+docker pull fawadawan143/daily-forecasting:latest
+docker run -p 8501:8501 5050:5050 fawadawan143/daily-forecasting:latest
+```
+
 ## Resources
