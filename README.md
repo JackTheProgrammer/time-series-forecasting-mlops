@@ -65,7 +65,7 @@ time-series-forecasting-mlops/
 └── winner_models.dvc
 ```
 
-## Installation Guide
+## 🛠️ Installation Guide
 
 ### Method 1: Using git clone and pip install
 
