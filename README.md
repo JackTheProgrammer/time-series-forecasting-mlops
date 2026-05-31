@@ -78,7 +78,7 @@ pip install --no-cache-dir -r requirements.txt
 
 ### Method 2: Using docker image
 
-#### Pulling the image which is runs the entire architectual flow
+#### Pulling the image which runs the entire architectual flow
 
 ```bash
 docker pull fawadawan143/fawadawan143/gold_stock_prediction:latest
