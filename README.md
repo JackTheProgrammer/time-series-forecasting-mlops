@@ -106,8 +106,8 @@ docker run -p 8501:8501 5050:5050 daily-forecasting:latest
 minikube start --driver=docker # Start minikube with the Docker driver
 kubectl apply -f k8s/ # Apply the Kubernetes deployment and service configurations in the k8s/ directory on the minikube cluster
 minikube image load daily-forecasting:latest # Load the Docker image into minikube
-kubectl expose deployment gold-forecasting-deployment --type=LoadBalancer --port=80 --target-port=80
 minikube tunnel # Start the minikube tunnel to access the LoadBalancer service, this simulates the cloud environment where LoadBalancer services are commonly used to expose applications to the internet. The tunnel will allow you to access the service using the external IP address assigned by minikube. once the tunnel is running, you can access the forecasting API at http://<minikube_ip>:80/forecast or http://<minikube_ip>:80/latest-forecast depending on the endpoint you want to use.
+kubectl expose deployment gold-forecasting-deployment --type=LoadBalancer --port=80 --target-port=80
 # Now to end it all up, you can stop the minikube cluster when you're done testing:
 kubectl delete service gold-forecasting-deployment
 kubectl delete deployment gold-forecasting-deployment
