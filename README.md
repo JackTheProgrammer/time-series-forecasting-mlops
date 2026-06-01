@@ -112,7 +112,9 @@ docker compose down
 ### Method 4: Using kubernetes
 
 ```bash
-docker pull fawadawan143/daily-forecasting:latest
+git clone https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git
+cd time-series-forecasting-mlops
+docker pull fawadawan143/daily-forecasting:latest # You can build your own as well, using the forecasts.Dockerfile and forecasts.Dockerfile.dockerignore files in the root directory of the project, and then tag it as daily-forecasting:latest, but my image is already available on Docker Hub, so no need to re-invent the wheel.
 docker run -p 8501:8501 5050:5050 daily-forecasting:latest
 minikube start --driver=docker # Start minikube with the Docker driver
 kubectl apply -f k8s/ # Apply the Kubernetes deployment and service configurations in the k8s/ directory on the minikube cluster
