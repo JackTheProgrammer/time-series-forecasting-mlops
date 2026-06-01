@@ -96,6 +96,8 @@ docker run -p 8501:8501 5050:5050 fawadawan143/daily-forecasting:latest
 ### Method 3: Using docker compose
 
 ```bash
+git clone https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git
+cd time-series-forecasting-mlops
 docker compose up --build -d
 docker compose up -d ml-pipeline # This will start the entire architectural flow, including data ingestion, preprocessing, model training, and evaluation. The ml-pipeline service will run all the necessary steps to process the data, train the models, and evaluate their performance. You can monitor the logs of this service to see the progress of each step in the pipeline.
 docker compose up -d forecasting-app # This will start the forecasting app service, which will run the forecasting app with the latest DVC and trsining artifacts.
