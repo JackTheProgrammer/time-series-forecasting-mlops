@@ -74,6 +74,7 @@ git clone https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git
 cd time-series-forecasting-mlops
 pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu torch==2.6.0
 pip install --no-cache-dir -r requirements.txt
+python scripts/api/main.py && streamlit run scripts/app/home/home.py
 ```
 
 ### Method 2: Using docker image
