@@ -167,3 +167,11 @@ kubectl delete service gold-forecasting-deployment
 kubectl delete deployment gold-forecasting-deployment
 minikube stop
 ```
+
+## 🔗 Resources
+
+- [Data Version Control | DVC | How to Push Datasets to Google Drive Easily | ‪@CodeKamikaze‬ (4)](https://youtu.be/e3GuonR1r-0?si=1f7f4dniQwH-6uCi)
+- [Automating Data Pipelines with Python & GitHub Actions [Code Walkthrough]](https://youtu.be/wJ794jLP2Tw?si=mXsWGGRQGxmI1rfl)
+- [Deploying Machine Learning Models with Docker and Kubernetes](https://medium.com/@rahulholla1/deploying-machine-learning-models-with-docker-and-kubernetes-e267543cf5aa)
+- [How to Set Up a CI/CD Pipeline with GitHub Actions for Automated Deployments](https://dev.to/vishnusatheesh/how-to-set-up-a-cicd-pipeline-with-github-actions-for-automated-deployments-j39)
+- [Jenkins: Running multiple steps](https://www.jenkins.io/doc/pipeline/tour/running-multiple-steps/)
