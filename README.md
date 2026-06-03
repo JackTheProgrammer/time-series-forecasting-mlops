@@ -1,6 +1,8 @@
 # MLOps based gold stock forecasting
 
-## Introduction
+## 📖 Introduction
+
+This project focuses on forecasting gold stock prices using deep learning models and implementing MLOps practices for efficient model development, deployment, and monitoring. The main objective is to create a robust and scalable system that can provide accurate forecasts of gold stock prices while ensuring the maintainability and reliability of the deployed models.
 
 ## 🔬 Methodology
 
