@@ -18,7 +18,7 @@ I evaluated the performance of each model using appropriate metrics such as Mean
 4. **Deployment and Monitoring**:
 I deployed the selected model using FastAPI and Streamlit to create a user-friendly interface for forecasting. I also implemented monitoring mechanisms to track the performance of the deployed model and ensure that it continues to provide accurate forecasts over time. Then, I at first deployed them all to DVC based remote of the google drive, and then I containerized the entire architectural flow using Docker, and finally, I deployed the forecasting app to Kubernetes to simulate a cloud environment deployment.
 
-## Architecture
+## ⚙️ Architecture
 
 ### Overall architecture
 
