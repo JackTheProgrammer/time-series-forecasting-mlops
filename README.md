@@ -170,6 +170,7 @@ minikube stop
 
 ## 🔗 Resources
 
+- [**My own GitHub repo**: Time-Series-Forecasting-and-Analysis](https://github.com/JackTheProgrammer/Time-Series-Forecasting-and-Analysis)
 - [Docker for Machine Learning | Docker Crash Course | CampusX](https://youtu.be/GToyQTGDOS4?si=Lkb3lNbxzPKwPf2I)
 - [Docker Simply Explained with a Machine Learning Project for Beginners](https://youtu.be/-l7YocEQtA0?si=GQ425cnC0SJnHLG9)
 - [Data Version Control | DVC | How to Push Datasets to Google Drive Easily | ‪@CodeKamikaze‬ (4)](https://youtu.be/e3GuonR1r-0?si=1f7f4dniQwH-6uCi)
