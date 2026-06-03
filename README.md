@@ -4,6 +4,20 @@
 
 ## Methodology
 
+My approach included:
+
+1. **Data Ingestion and Preprocessing**:
+I acquired the gold stock from 2010-01-01 to every current date using yfinance library, and then I performed preprocessing steps such as handling missing values, scaling the data, and creating sequences for time series forecasting.
+
+2. **Model Development and Training**:
+I developed and trained multiple deep learning models, including LSTM, GRU, and Conv1D architectures, to forecast the gold stock prices. I used a systematic approach to train and evaluate each model, ensuring that I selected the best-performing model based on evaluation metrics.
+
+3. **Model Evaluation and Selection**:
+I evaluated the performance of each model using appropriate metrics such as Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE). Based on the evaluation results, I selected the best-performing model for deployment.
+
+4. **Deployment and Monitoring**:
+I deployed the selected model using FastAPI and Streamlit to create a user-friendly interface for forecasting. I also implemented monitoring mechanisms to track the performance of the deployed model and ensure that it continues to provide accurate forecasts over time. Then, I at first deployed them all to DVC based remote of the google drive, and then I containerized the entire architectural flow using Docker, and finally, I deployed the forecasting app to Kubernetes to simulate a cloud environment deployment.
+
 ## Architecture
 
 ### Overall architecture
