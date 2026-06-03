@@ -170,6 +170,8 @@ minikube stop
 
 ## 🔗 Resources
 
+- [Docker for Machine Learning | Docker Crash Course | CampusX](https://youtu.be/GToyQTGDOS4?si=Lkb3lNbxzPKwPf2I)
+- [Docker Simply Explained with a Machine Learning Project for Beginners](https://youtu.be/-l7YocEQtA0?si=GQ425cnC0SJnHLG9)
 - [Data Version Control | DVC | How to Push Datasets to Google Drive Easily | ‪@CodeKamikaze‬ (4)](https://youtu.be/e3GuonR1r-0?si=1f7f4dniQwH-6uCi)
 - [Automating Data Pipelines with Python & GitHub Actions [Code Walkthrough]](https://youtu.be/wJ794jLP2Tw?si=mXsWGGRQGxmI1rfl)
 - [Deploying Machine Learning Models with Docker and Kubernetes](https://medium.com/@rahulholla1/deploying-machine-learning-models-with-docker-and-kubernetes-e267543cf5aa)
