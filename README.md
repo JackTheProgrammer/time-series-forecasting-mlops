@@ -4,6 +4,13 @@
 
 This project focuses on forecasting gold stock prices using deep learning models and implementing MLOps practices for efficient model development, deployment, and monitoring. The main objective is to create a robust and scalable system that can provide accurate forecasts of gold stock prices while ensuring the maintainability and reliability of the deployed models.
 
+## 🔧 Tools
+
+- [Docker](https://www.docker.com/)
+- [Kubernetes](https://kubernetes.io/)
+- [DVC](https://dvc.org/)
+- [GCP](https://cloud.google.com/)
+
 ## 🔬 Methodology
 
 My approach included:
@@ -160,5 +167,3 @@ kubectl delete service gold-forecasting-deployment
 kubectl delete deployment gold-forecasting-deployment
 minikube stop
 ```
-
-## Resources
