@@ -28,7 +28,12 @@ I deployed the selected model using FastAPI and Streamlit to create a user-frien
 
 ![Alt CI/CD workflow architecture](diagrams/mlops_ci_cd_workflow.jpg)
 
-## Features
+## 🚀 Features
+
+- **Data Ingestion**: Automated data ingestion from yfinance to acquire gold stock prices.
+- **Preprocessing**: Handling missing values, scaling data, and creating sequences for time series
+- **Monthly model training and evaluation**: Systematic training and evaluation of multiple deep learning models (LSTM, GRU, Conv1D) to select the best-performing model done every 4 months of deployment.
+- **Deployment**: Deployment of the best-performing model using FastAPI and Streamlit for user-friendly forecasting.
 
 ## 💻 Demo screenshot
 
