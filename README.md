@@ -2,7 +2,7 @@
 
 ## Introduction
 
-## Methodology
+## 🔬 Methodology
 
 My approach included:
 
