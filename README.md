@@ -119,7 +119,7 @@ python scripts/api/main.py && streamlit run scripts/app/home/home.py
 
 ```bash
 docker pull fawadawan143/fawadawan143/gold_stock_prediction:latest
-docker run -p 8501:8501 5050:5050 fawadawan143/fawadawan143/gold_stock_prediction:latest
+docker run -p 8501:8501 5050:5050 fawadawan143/gold_stock_prediction:latest
 ```
 
 #### Pulling the image which is only for forecasting using the latest model
