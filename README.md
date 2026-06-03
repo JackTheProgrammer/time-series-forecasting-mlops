@@ -6,6 +6,14 @@
 
 ## Architecture
 
+### Overall architecture
+
+![Alt Overall architectural system flow](diagrams/overall_generic_diag.jpg)
+
+### CI/CD workflow architecture
+
+![Alt CI/CD workflow architecture](diagrams/mlops_ci_cd_workflow.jpg)
+
 ## Features
 
 ## 💻 Demo screenshot
