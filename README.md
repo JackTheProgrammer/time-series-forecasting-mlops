@@ -37,6 +37,41 @@ I deployed the selected model using FastAPI and Streamlit to create a user-frien
 
 ![Alt CI/CD workflow architecture](diagrams/mlops_ci_cd_workflow.jpg)
 
+## 🔄 Synching to local machine (Windows 🪟 OS)
+
+### Method 1: Using command line
+
+Search for the CMD, and then run the following command to execute the task immediately:
+
+```bat
+schtasks /run /tn "MLOps_TimeSeries_Sync"
+```
+
+### Method 2: Using scheduler GUI
+
+1. Press `Win + R` to open the Run dialog, type `taskschd.msc`, and press Enter to open the Task Scheduler.
+2. In the Task Scheduler, navigate to the "Task Scheduler Library" on the left pane
+3. Look for the task named "MLOps_TimeSeries_Sync" in the middle pane.
+4. Right-click on the "MLOps_TimeSeries_Sync" task and select "Run" from the context menu to execute the task immediately.
+
+### Task deployment demos
+
+To deploy the task, you can follow these steps:
+
+i. Open the CMD as admin and type the following into it to create the task as per the cron trigger of `0 17 1 */4 *`
+
+```bat
+schtasks /create /tn "MLOps_TimeSeries_Sync" /tr "'D:\path\to\your\sync_pipeline.bat'" /sc monthly /mo 4 /d 1 /st 17:00
+```
+
+ii. On my machine, I have the `sync_pipeline.bat` file located at `D:\MLOps_TimeSeries_Sync\sync_pipeline.bat`, so the command I ran was:
+
+![Alt CMD command](demos/successfull_running_local_synching_cron_peshawar_pkt.png)
+
+iii. Also, in my task scheduler, the task looked like this:
+
+![Alt Task in task scheduler](demos/schtask_mlops_time_series_synch.png)
+
 ## 🚀 Features
 
 - **Data Ingestion**: Automated data ingestion from yfinance to acquire gold stock prices.
