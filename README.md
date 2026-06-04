@@ -72,6 +72,8 @@ iii. Also, in my task scheduler, the task looked like this:
 
 ![Alt Task in task scheduler](demos/schtask_mlops_time_series_synch.png)
 
+iv. If you look at my [Synching pipeline](sync_pipeline.bat) bat script, you'll see that it has `cd "D:\ml projects\mlops_time_series_modeling"`, why? Because, I have my entire project there, in your local setup, you can have it as per your this project's location on your local machine, just make sure to update the path in the `sync_pipeline.bat` file accordingly.
+
 ## 🚀 Features
 
 - **Data Ingestion**: Automated data ingestion from yfinance to acquire gold stock prices.
