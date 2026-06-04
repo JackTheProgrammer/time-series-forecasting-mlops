@@ -1,9 +1,9 @@
 pipeline{
     agent any
     triggers{
-        // This cron expression schedules the job to run at 11:00 AM on the first 
+        // This cron expression schedules the job to run at 17:00 (5:00 PM) on the first 
         // day of every 4th month (January, May, September)
-        cron('0 11 1 */4 *')
+        cron('0 17 1 */4 *')
     }
     stages{
         stage('Synching to local machine the GHA performed workflow'){
