@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('Synching to local machine the GHA performed workflow'){
             steps{
-                bat 'git pull --rebase'
+                bat 'git pull --rebase origin main'
                 bat 'dvc pull'
             }
         }
