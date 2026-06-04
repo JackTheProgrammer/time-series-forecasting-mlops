@@ -177,4 +177,3 @@ minikube stop
 - [Automating Data Pipelines with Python & GitHub Actions [Code Walkthrough]](https://youtu.be/wJ794jLP2Tw?si=mXsWGGRQGxmI1rfl)
 - [Deploying Machine Learning Models with Docker and Kubernetes](https://medium.com/@rahulholla1/deploying-machine-learning-models-with-docker-and-kubernetes-e267543cf5aa)
 - [How to Set Up a CI/CD Pipeline with GitHub Actions for Automated Deployments](https://dev.to/vishnusatheesh/how-to-set-up-a-cicd-pipeline-with-github-actions-for-automated-deployments-j39)
-- [Jenkins: Running multiple steps](https://www.jenkins.io/doc/pipeline/tour/running-multiple-steps/)
