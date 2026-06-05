@@ -179,7 +179,6 @@ pip install --no-cache-dir -r requirements.txt
 
 # Launch Backend Engine & Frontend Interface simultaneously
 python scripts/api/main.py && streamlit run scripts/app/home/home.py
-
 ```
 
 ### Method 2: Isolated Docker Runtimes
@@ -191,7 +190,6 @@ python scripts/api/main.py && streamlit run scripts/app/home/home.py
 ```bash
 docker pull fawadawan143/gold_stock_prediction:latest
 docker run -p 8501:8501 -p 5050:5050 fawadawan143/gold_stock_prediction:latest
-
 ```
 
 #### Option B: Run Optimized Production Serving UI (Latest Assets Only)
@@ -199,7 +197,6 @@ docker run -p 8501:8501 -p 5050:5050 fawadawan143/gold_stock_prediction:latest
 ```bash
 docker pull fawadawan143/daily-forecasting:latest
 docker run -p 8501:8501 -p 5050:5050 fawadawan143/daily-forecasting:latest
-
 ```
 
 ### Method 3: Multi-Container Orchestration via Docker Compose
@@ -217,7 +214,6 @@ docker compose up -d forecasting-app    # Serves prediction features using the l
 
 # Spin down the active stack environment safely
 docker compose down
-
 ```
 
 ### Method 4: Production Cluster Deployment (Kubernetes)
@@ -240,7 +236,6 @@ kubectl expose deployment gold-forecasting-deployment --type=LoadBalancer --port
 
 # In a separate terminal session, initiate the network ingress bridge tunnel
 minikube tunnel
-
 ```
 
 *Your application endpoint route paths are now accessible at `http://localhost:80/forecast` or `http://localhost:80/latest-forecast` mapping directly into your cluster load-balancer matrix.*
@@ -249,9 +244,10 @@ minikube tunnel
 
 ```bash
 kubectl delete service gold-forecasting-deployment
-kubectl delete deployment gold-forecasting-deployment
-minikube stop
 
+kubectl delete deployment gold-forecasting-deployment
+
+minikube stop
 ```
 
 ---
