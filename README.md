@@ -100,7 +100,12 @@ time-series-forecasting-mlops/
 ├── compose.yml
 ├── data.dvc
 ├── demos/
-│   └── streamlit_app_running_screenshot.png
+│   ├── schtask_mlops_time_series_synch.png
+│   ├── streamlit_app_running_screenshot.png
+│   └── successfull_running_local_synching_cron_peshawar_pkt.png
+├── diagrams/
+│   ├── mlops_ci_cd_workflow.jpg
+│   └── overall_generic_diag.jpg
 ├── Dockerfile
 ├── forecasts.Dockerfile
 ├── forecasts.Dockerfile.dockerignore
@@ -135,6 +140,7 @@ time-series-forecasting-mlops/
 │   ├── evaluate.py
 │   ├── ingestion.py
 │   └── preprocessing.py
+├── sync_pipeline.bat
 └── winner_models.dvc
 ```
 
