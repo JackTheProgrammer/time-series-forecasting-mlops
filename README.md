@@ -68,7 +68,6 @@ Open a standard terminal and trigger the Task Scheduler engine immediately:
 
 ```bat
 schtasks /run /tn "MLOps_TimeSeries_Sync"
-
 ```
 
 ### Method 2: Execution via Task Scheduler GUI
@@ -84,7 +83,6 @@ schtasks /run /tn "MLOps_TimeSeries_Sync"
 
 ```bat
 schtasks /create /tn "MLOps_TimeSeries_Sync" /tr "'D:\path\to\your\sync_pipeline.bat'" /sc monthly /mo 4 /d 1 /st 17:00
-
 ```
 
 1. **Workstation Deployment References:**
