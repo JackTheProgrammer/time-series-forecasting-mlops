@@ -204,7 +204,7 @@ docker run -p 8501:8501 -p 5050:5050 fawadawan143/daily-forecasting:latest
 ### Method 3: Multi-Container Orchestration via Docker Compose
 
 ```bash
-git clone [https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git](https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git)
+git clone https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git
 cd time-series-forecasting-mlops
 
 # Launch system instances in safe daemon modes
