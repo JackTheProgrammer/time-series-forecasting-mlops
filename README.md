@@ -105,6 +105,8 @@ schtasks /create /tn "MLOps_TimeSeries_Sync" /tr "'D:\path\to\your\sync_pipeline
 
 ## 💻 Application Client Interface
 
+![Alt demo](demos/streamlit_app_running_screenshot.png)
+
 ---
 
 ## 📂 Project Directory Structure
