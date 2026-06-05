@@ -172,7 +172,7 @@ time-series-forecasting-mlops/
 
 ```bash
 # Clone the repository code base
-git clone [https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git](https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git)
+git clone https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git
 cd time-series-forecasting-mlops
 
 # Build the base CPU-optimized computing environment and requirements
@@ -221,7 +221,7 @@ docker compose down
 ### Method 4: Production Cluster Deployment (Kubernetes)
 
 ```bash
-git clone [https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git](https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git)
+git clone https://github.com/JackTheProgrammer/time-series-forecasting-mlops.git
 cd time-series-forecasting-mlops
 
 # Start your localized cluster management context
