@@ -196,7 +196,7 @@ python scripts/api/main.py && streamlit run scripts/app/home/home.py
 # adding the scaled_transform folder to DVC artifacts
 dvc add scaled_transform
 dvc commit -f
-dvc remote add -d myremote <LINK_TO_YOUR_REMOTE_STORAGE> # I used gdrive cause this method was free entirely
+dvc remote add -d myremote <LINK_TO_YOUR_REMOTE_STORAGE> # I used google drive as remote storage cause this method was free entirely
 # you may need to do the necessary configurations related to the remote storage you are using, for example in case of google storage,
 # I followed this tutorial: https://youtu.be/e3GuonR1r-0?si=1f7f4dniQwH-6uCi
 dvc push -r myremote
