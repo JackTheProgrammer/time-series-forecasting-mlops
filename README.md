@@ -246,9 +246,7 @@ minikube tunnel
 
 ```bash
 kubectl delete service gold-forecasting-deployment
-
 kubectl delete deployment gold-forecasting-deployment
-
 minikube stop
 ```
 
