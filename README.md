@@ -179,8 +179,27 @@ cd time-series-forecasting-mlops
 pip install --no-cache-dir --extra-index-url [https://download.pytorch.org/whl/cpu](https://download.pytorch.org/whl/cpu) torch==2.6.0
 pip install --no-cache-dir -r requirements.txt
 
-# Launch Backend Engine & Frontend Interface simultaneously
+# Initialize the DVC
+# step 1: install DVC via pip
+pip install dvc --no-cache-dir
+# step 2: run the preprocessing and dl_pipeline scripts to generate the required DVC tracked assets (data, models, winner_models)
+python scripts/preprocessing.py
+python scripts/dl_pipeline.py
+# step 3: Add the generated artifacts to the DVC tracking, no need to craft .dvcignore though
+dvc add data
+dvc add models
+dvc add winner_models
+
+# Launch Backend Engine & Frontend Interface simultaneously so that you can also generate the scaled_transform folder as well, containing the scalers as pickled files
 python scripts/api/main.py && streamlit run scripts/app/home/home.py
+
+# adding the scaled_transform folder to DVC artifacts
+dvc add scaled_transform
+dvc commit -f
+dvc remote add -d myremote <LINK_TO_YOUR_REMOTE_STORAGE> # I used gdrive cause this method was free entirely
+# you may need to do the necessary configurations related to the remote storage you are using, for example in case of google storage,
+# I followed this tutorial: https://youtu.be/e3GuonR1r-0?si=1f7f4dniQwH-6uCi
+dvc push -r myremote
 ```
 
 ### Method 2: Isolated Docker Runtimes
