@@ -204,8 +204,6 @@ dvc push -r myremote
 
 ### Method 2: Isolated Docker Runtimes
 
-*(Note: Corrected explicit multi-port mappings via decoupled `-p` runtime flags)*
-
 #### Option A: Run Full Ingestion, Training, & Prediction Ecosystem
 
 ```bash
