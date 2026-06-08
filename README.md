@@ -226,16 +226,12 @@ cd time-series-forecasting-mlops
 
 # Start your localized cluster management context
 minikube start --driver=docker
-
 # Apply declarative state manifests into active pods and nodes
 kubectl apply -f k8s/
-
 # Inject local image assets directly into Minikube container runtime scopes
 minikube image load fawadawan143/daily-forecasting:latest
-
 # Expose your cluster services directly to external clients via LoadBalancer emulation
 kubectl expose deployment gold-forecasting-deployment --type=LoadBalancer --port=80 --target-port=80
-
 # In a separate terminal session, initiate the network ingress bridge tunnel
 minikube tunnel
 ```
