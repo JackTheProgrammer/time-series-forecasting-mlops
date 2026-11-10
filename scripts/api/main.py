@@ -35,4 +35,4 @@ def health():
     return {"status": "API is healthy and running."}
 
 if __name__ == "__main__":
-    run(app=app, port=5050)
+    run(app=app, port=5050, host='0.0.0.0', reload=True)  # Set reload=True for development purposes
