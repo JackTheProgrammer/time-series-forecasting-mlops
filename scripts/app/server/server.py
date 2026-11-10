@@ -7,7 +7,7 @@ import torch
 path.append('.')
 path.append('./')
 
-api_url = 'http://3.27.239.29:5050/'
+api_url = 'http://3.27.239.29:50'
 
 def is_up_and_running():
     try:
